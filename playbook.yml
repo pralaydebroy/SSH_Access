@@ -1,0 +1,11 @@
+---
+-
+  name: Grant/Revoke SSH access
+  hosts: instances
+  gather_facts: False
+  remote_user: ec2-user
+  become: true
+  become_user: root
+  roles:
+    - {role: grant_user, when: action == "grant"}
+    - {role: revoke_user, when: action == "revoke"}
